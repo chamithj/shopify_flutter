@@ -9,10 +9,22 @@ query($metafields: [HasMetafieldsIdentifier!]!, $country: CountryCode, $n : Int,
       cursor
       node {
       options(first: 50) {
-            id
-            name
-            values
+        id
+        name
+        values
+        optionValues {
+          id
+          name
+          swatch {
+            color
+            image {
+              previewImage {
+                url
+              }
             }
+          }
+        }
+      }
           metafields(identifiers: $metafields) {
             id
             type

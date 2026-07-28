@@ -11,6 +11,10 @@ _$OptionImpl _$$OptionImplFromJson(Map<String, dynamic> json) => _$OptionImpl(
       name: json['name'] as String,
       values:
           (json['values'] as List<dynamic>).map((e) => e as String).toList(),
+      optionValues: (json['optionValues'] as List<dynamic>?)
+              ?.map((e) => OptionValue.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$OptionImplToJson(_$OptionImpl instance) =>
@@ -18,4 +22,5 @@ Map<String, dynamic> _$$OptionImplToJson(_$OptionImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'values': instance.values,
+      'optionValues': instance.optionValues.map((e) => e.toJson()).toList(),
     };

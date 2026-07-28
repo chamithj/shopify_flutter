@@ -24,12 +24,11 @@ mixin _$Option {
   String get name => throw _privateConstructorUsedError;
   List<String> get values => throw _privateConstructorUsedError;
 
-  /// Serializes this Option to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  /// Rich option values including native Shopify color swatches (API 2024-07+).
+  List<OptionValue> get optionValues => throw _privateConstructorUsedError;
 
-  /// Create a copy of Option
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   $OptionCopyWith<Option> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -38,7 +37,11 @@ abstract class $OptionCopyWith<$Res> {
   factory $OptionCopyWith(Option value, $Res Function(Option) then) =
       _$OptionCopyWithImpl<$Res, Option>;
   @useResult
-  $Res call({String id, String name, List<String> values});
+  $Res call(
+      {String id,
+      String name,
+      List<String> values,
+      List<OptionValue> optionValues});
 }
 
 /// @nodoc
@@ -51,14 +54,13 @@ class _$OptionCopyWithImpl<$Res, $Val extends Option>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Option
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? name = null,
     Object? values = null,
+    Object? optionValues = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,6 +75,10 @@ class _$OptionCopyWithImpl<$Res, $Val extends Option>
           ? _value.values
           : values // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      optionValues: null == optionValues
+          ? _value.optionValues
+          : optionValues // ignore: cast_nullable_to_non_nullable
+              as List<OptionValue>,
     ) as $Val);
   }
 }
@@ -84,7 +90,11 @@ abstract class _$$OptionImplCopyWith<$Res> implements $OptionCopyWith<$Res> {
       __$$OptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, List<String> values});
+  $Res call(
+      {String id,
+      String name,
+      List<String> values,
+      List<OptionValue> optionValues});
 }
 
 /// @nodoc
@@ -95,14 +105,13 @@ class __$$OptionImplCopyWithImpl<$Res>
       _$OptionImpl _value, $Res Function(_$OptionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Option
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
     Object? name = null,
     Object? values = null,
+    Object? optionValues = null,
   }) {
     return _then(_$OptionImpl(
       id: null == id
@@ -117,6 +126,10 @@ class __$$OptionImplCopyWithImpl<$Res>
           ? _value._values
           : values // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      optionValues: null == optionValues
+          ? _value._optionValues
+          : optionValues // ignore: cast_nullable_to_non_nullable
+              as List<OptionValue>,
     ));
   }
 }
@@ -127,8 +140,10 @@ class _$OptionImpl extends _Option {
   _$OptionImpl(
       {required this.id,
       required this.name,
-      required final List<String> values})
+      required final List<String> values,
+      final List<OptionValue> optionValues = const []})
       : _values = values,
+        _optionValues = optionValues,
         super._();
 
   factory _$OptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -146,9 +161,21 @@ class _$OptionImpl extends _Option {
     return EqualUnmodifiableListView(_values);
   }
 
+  /// Rich option values including native Shopify color swatches (API 2024-07+).
+  final List<OptionValue> _optionValues;
+
+  /// Rich option values including native Shopify color swatches (API 2024-07+).
+  @override
+  @JsonKey()
+  List<OptionValue> get optionValues {
+    if (_optionValues is EqualUnmodifiableListView) return _optionValues;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_optionValues);
+  }
+
   @override
   String toString() {
-    return 'Option(id: $id, name: $name, values: $values)';
+    return 'Option(id: $id, name: $name, values: $values, optionValues: $optionValues)';
   }
 
   @override
@@ -158,17 +185,21 @@ class _$OptionImpl extends _Option {
             other is _$OptionImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._values, _values));
+            const DeepCollectionEquality().equals(other._values, _values) &&
+            const DeepCollectionEquality()
+                .equals(other._optionValues, _optionValues));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_values));
+      runtimeType,
+      id,
+      name,
+      const DeepCollectionEquality().hash(_values),
+      const DeepCollectionEquality().hash(_optionValues));
 
-  /// Create a copy of Option
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OptionImplCopyWith<_$OptionImpl> get copyWith =>
@@ -186,7 +217,8 @@ abstract class _Option extends Option {
   factory _Option(
       {required final String id,
       required final String name,
-      required final List<String> values}) = _$OptionImpl;
+      required final List<String> values,
+      final List<OptionValue> optionValues}) = _$OptionImpl;
   _Option._() : super._();
 
   factory _Option.fromJson(Map<String, dynamic> json) = _$OptionImpl.fromJson;
@@ -197,11 +229,12 @@ abstract class _Option extends Option {
   String get name;
   @override
   List<String> get values;
-
-  /// Create a copy of Option
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+
+  /// Rich option values including native Shopify color swatches (API 2024-07+).
+  List<OptionValue> get optionValues;
+  @override
+  @JsonKey(ignore: true)
   _$$OptionImplCopyWith<_$OptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

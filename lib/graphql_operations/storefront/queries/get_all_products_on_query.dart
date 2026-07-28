@@ -5,10 +5,22 @@ query($metafields: [HasMetafieldsIdentifier!]!, $cursor: String, $sortKey : Prod
     edges {
       node {
       options(first: 50) {
-            id
-            name
-            values
+        id
+        name
+        values
+        optionValues {
+          id
+          name
+          swatch {
+            color
+            image {
+              previewImage {
+                url
+              }
             }
+          }
+        }
+      }
           metafields(identifiers: $metafields) {
             id
             type

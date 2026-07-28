@@ -240,10 +240,22 @@ mutation cartAttributesUpdate($cartId: ID!, $attributes: [AttributeInput!]!, $co
                 }
                 product {
                   options(first: 5) {
+                    id
+                    name
+                    values
+                    optionValues {
                       id
                       name
-                      values
+                      swatch {
+                        color
+                        image {
+                          previewImage {
+                            url
+                          }
+                        }
                       }
+                    }
+                  }
                   variants(first: 250) {
                     edges {
                       node {

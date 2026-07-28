@@ -21,10 +21,22 @@ query($metafields: [HasMetafieldsIdentifier!]!, $country: CountryCode, $ids : [I
         }
       }
     options(first: 50) {
-            id
-            name
-            values
+      id
+      name
+      values
+      optionValues {
+        id
+        name
+        swatch {
+          color
+          image {
+            previewImage {
+              url
             }
+          }
+        }
+      }
+    }
       id
       handle
       collections(first: 250) {

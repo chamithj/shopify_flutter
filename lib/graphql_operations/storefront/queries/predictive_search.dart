@@ -132,18 +132,6 @@ query predictiveSearch(\$query: String!, \$limit: Int, \$limitScope: PredictiveS
         id
         name
         values
-        optionValues {
-          id
-          name
-          swatch {
-            color
-            image {
-              previewImage {
-                url
-              }
-            }
-          }
-        }
       }
     }
     collections {

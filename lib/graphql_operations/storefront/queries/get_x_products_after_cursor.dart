@@ -9,22 +9,10 @@ query($metafields: [HasMetafieldsIdentifier!]!, $cursor : String, $x : Int, $rev
       cursor
       node {
       options(first: 50) {
-        id
-        name
-        values
-        optionValues {
-          id
-          name
-          swatch {
-            color
-            image {
-              previewImage {
-                url
-              }
+            id
+            name
+            values
             }
-          }
-        }
-      }
         metafields(identifiers: $metafields) {
           id
           type

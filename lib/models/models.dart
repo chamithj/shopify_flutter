@@ -47,8 +47,6 @@ export 'src/product/associated_collections/associated_collections.dart';
 export 'src/product/metafield/metafield.dart';
 export 'src/product/metafield_identifier/metafield_identifier.dart';
 export 'src/product/option/option.dart';
-export 'src/product/option/option_swatch.dart';
-export 'src/product/option/option_value.dart';
 export 'src/product/price_v_2/price_v_2.dart';
 export 'src/product/product_variant/product_variant.dart';
 export 'src/product/selected_option/selected_option.dart';

@@ -240,22 +240,10 @@ mutation cartNoteUpdate($cartId: ID!, $note: String!, $country: CountryCode, $re
                 }
                 product {
                   options(first: 5) {
-                    id
-                    name
-                    values
-                    optionValues {
                       id
                       name
-                      swatch {
-                        color
-                        image {
-                          previewImage {
-                            url
-                          }
-                        }
-                      }
-                    }
-                  }
+                      values
+                      } 
                   variants(first: 250) {
                     edges {
                       node {

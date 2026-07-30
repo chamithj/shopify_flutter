@@ -22,18 +22,6 @@ query($metafields: [HasMetafieldsIdentifier!]!, $id : ID!, $cursor : String, $fi
             id
             name
             values
-            optionValues {
-              id
-              name
-              swatch {
-                color
-                image {
-                  previewImage {
-                    url
-                  }
-                }
-              }
-            }
           }
           metafields(identifiers: $metafields) {
             id

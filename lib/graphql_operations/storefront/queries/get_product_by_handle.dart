@@ -6,18 +6,6 @@ query getProductByHandle($metafields: [HasMetafieldsIdentifier!]!, $country: Cou
       id
       name
       values
-      optionValues {
-        id
-        name
-        swatch {
-          color
-          image {
-            previewImage {
-              url
-            }
-          }
-        }
-      }
     }
     metafields(identifiers: $metafields) {
       id

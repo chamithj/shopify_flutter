@@ -240,22 +240,10 @@ mutation cartLinesRemove($country: CountryCode, $cartId: ID!, $lineIds: [ID!]!, 
                 }
                 product {
                   options(first: 5) {
-                    id
-                    name
-                    values
-                    optionValues {
                       id
                       name
-                      swatch {
-                        color
-                        image {
-                          previewImage {
-                            url
-                          }
-                        }
-                      }
-                    }
-                  }
+                      values
+                      } 
                   variants(first: 250) {
                     edges {
                       node {
